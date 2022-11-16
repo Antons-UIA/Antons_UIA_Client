@@ -7,6 +7,7 @@ import location from "../../assets/location.png";
 import statistics from "../../assets/charts.png";
 import videocall from "../../assets/videocall.jpg";
 import { BsSearch } from "react-icons/bs/index";
+import Blogs from "../../components/Blogs";
 const services = [
   {
     id: 1,
@@ -51,7 +52,6 @@ const services = [
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div className="py-8 px-16">
         <div className="flex">
           <div>
@@ -105,6 +105,7 @@ const Home = () => {
             </div>
           ))}
         </div>
+        <Blogs />
       </div>
     </>
   );
