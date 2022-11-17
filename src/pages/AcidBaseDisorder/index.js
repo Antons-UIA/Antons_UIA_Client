@@ -1,4 +1,6 @@
 import axios from "axios";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import React, { useEffect, useState } from "react";
 const API_URL =
   "https://uia-server-6n2165efb-atharvakinikar.vercel.app/api/acid-base/predict";
@@ -50,6 +52,15 @@ const AcidBaseDisorder = () => {
       finalLabel += word.charAt(0).toUpperCase() + word.slice(1) + " ";
     });
     return finalLabel;
+  };
+  const downloadPdf = () => {
+    const report = document.getElementById("report");
+    html2canvas(report).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "JPEG", 0, 0);
+      pdf.save("report.pdf");
+    });
   };
   return (
     <div className="py-8 px-16">
@@ -158,18 +169,32 @@ const AcidBaseDisorder = () => {
       </div>
       {Object.keys(report).length > 0 ? (
         <div className="mt-4 p-4 max-w-[80%] mr-auto ml-auto">
-          <h1 className="text-3xl font-bold text-[#1678F2] mb-4">Report</h1>
-          {Object.keys(report).map((key, index) => {
-            return (
-              <div className="flex">
-                <h1 className="font-bold text-lg" key={key}>
-                  {getLabelName(key)}:{" "}
-                </h1>
-                <h1 className="ml-2 text-lg"> {report[key]}</h1>
-              </div>
-            );
-          })}
-          <button className="mt-4 font-bold text-white bg-[#6B40F9] px-8 py-2 rounded">
+          <div id="report" className="p-4 w-[100%]">
+            <h1 className="text-3xl font-bold text-[#1678F2] mb-4">Report</h1>
+            <table className="table-auto border border-black">
+              <tbody>
+                {Object.keys(report).map((key, index) => {
+                  return (
+                    <tr>
+                      <td className="border border-black p-2">
+                        <h1 className="font-bold text-lg" key={key}>
+                          {getLabelName(key)}
+                        </h1>
+                      </td>
+                      <td className="border border-black p-2 max-w-[600px]">
+                        <h1 className="ml-2 text-lg"> {report[key]}</h1>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <button
+            onClick={() => downloadPdf()}
+            className="mt-4 ml-4 font-bold text-white bg-[#6B40F9] px-8 py-2 rounded"
+          >
             Download Report
           </button>
         </div>
