@@ -2,8 +2,7 @@ import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import React, { useEffect, useState } from "react";
-const API_URL =
-  "https://uia-server-6n2165efb-atharvakinikar.vercel.app/api/acid-base/predict";
+const API_URL = "http://localhost:4000/api/acid-base/predict";
 const AcidBaseDisorder = () => {
   //   useEffect(() => {
   //     determineDisorder();
