@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import heart from "../../assets/heart.png";
-import doctor from "../../assets/doctor.png";
+import doctor from "../../assets/doctor.gif";
 import heartrate from "../../assets/heartrate.png";
 import location from "../../assets/location.png";
 import statistics from "../../assets/charts.png";
@@ -52,6 +52,7 @@ const services = [
 const Home = () => {
   return (
     <>
+      <Navbar value="Login" />
       <div className="py-8 px-16">
         <div className="flex">
           <div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import React, { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar";
 const API_URL = "https://uia-antons-server.herokuapp.com/api/acid-base/predict";
 const normalValues = [
   {
@@ -180,11 +181,13 @@ const AcidBaseDisorder = () => {
     });
   };
   return (
-    <div className="py-8 px-16">
-      <h1 className="text-3xl font-bold text-[#6B40F9]">
-        Determine Acid Base Disorders
-      </h1>
-      {/* <div className="flex justify-around items-center">
+    <>
+      <Navbar value="Sign-Out" />
+      <div className="py-8 px-16">
+        <h1 className="text-3xl font-bold text-[#3A8EF6]">
+          Determine Acid Base Disorders
+        </h1>
+        {/* <div className="flex justify-around items-center">
         <div className="mr-8 mt-4">
           <h1 className="font-semibold text-lg">Enter Patient Name</h1>
           <input
@@ -204,179 +207,185 @@ const AcidBaseDisorder = () => {
           />
         </div>
       </div> */}
-      <div className="mt-4 p-4 max-w-[80%] grid grid-cols-3 mr-auto ml-auto">
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Patient Name</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. Manan Shah"
-            value={patientName}
-            onChange={(e) => setPatientName(e.target.value)}
-          />
+        <div className="mt-4 p-4 max-w-[90%] grid grid-cols-2 mr-auto ml-auto">
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Patient Name</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. Manan Shah"
+              value={patientName}
+              onChange={(e) => setPatientName(e.target.value)}
+            />
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Patient Email</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. manan@gmail.com"
+              value={patientEmail}
+              onChange={(e) => setPatientEmail(e.target.value)}
+            />
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter pH value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 7.6"
+              type={"number"}
+              value={pH}
+              onChange={(e) => setpH(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">num</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter PaCO2 value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 23"
+              type={"number"}
+              value={CO2}
+              onChange={(e) => setCO2(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmHg</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter HCO3 value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 10"
+              type={"number"}
+              value={HCO3}
+              onChange={(e) => setHCO3(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmol/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Na+ value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 140"
+              type={"number"}
+              value={Na}
+              onChange={(e) => setNa(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmol/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter K+ value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 0"
+              type={"number"}
+              value={K}
+              onChange={(e) => setK(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmol/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Cl- value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 100"
+              type={"number"}
+              value={Cl}
+              onChange={(e) => setCl(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmol/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Lactate value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 11"
+              type={"number"}
+              value={lactate}
+              onChange={(e) => setLactate(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">mmol/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter Albumin value</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 21"
+              type={"number"}
+              value={albumin}
+              onChange={(e) => setAlbumin(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">g/L</span>
+          </div>
+          <div className="mr-8 mt-4">
+            <h1 className="font-semibold text-lg">Enter weight value in kgs</h1>
+            <input
+              className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded min-w-[70%]"
+              placeholder="eg. 34"
+              type={"number"}
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+            <span className="ml-2 text-sm text-slate-600">kg</span>
+          </div>
         </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Patient Email</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. manan@gmail.com"
-            value={patientEmail}
-            onChange={(e) => setPatientEmail(e.target.value)}
-          />
+        <div className="mt-4 max-w-[100px] ml-auto mr-[180px]">
+          <button
+            onClick={() => determineDisorder()}
+            className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded"
+          >
+            Submit
+          </button>
         </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter pH value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 7.6"
-            type={"number"}
-            value={pH}
-            onChange={(e) => setpH(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">num</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter PaCO2 value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 23"
-            type={"number"}
-            value={CO2}
-            onChange={(e) => setCO2(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmHg</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter HCO3 value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 10"
-            type={"number"}
-            value={HCO3}
-            onChange={(e) => setHCO3(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmol/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Na+ value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 140"
-            type={"number"}
-            value={Na}
-            onChange={(e) => setNa(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmol/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter K+ value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 0"
-            type={"number"}
-            value={K}
-            onChange={(e) => setK(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmol/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Cl- value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 100"
-            type={"number"}
-            value={Cl}
-            onChange={(e) => setCl(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmol/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Lactate value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 11"
-            type={"number"}
-            value={lactate}
-            onChange={(e) => setLactate(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">mmol/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter Albumin value</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 21"
-            type={"number"}
-            value={albumin}
-            onChange={(e) => setAlbumin(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">g/L</span>
-        </div>
-        <div className="mr-8 mt-4">
-          <h1 className="font-semibold text-lg">Enter weight value in kgs</h1>
-          <input
-            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
-            placeholder="eg. 34"
-            type={"number"}
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-          />
-          <span className="ml-2 text-sm text-slate-600">kg</span>
-        </div>
-      </div>
-      <div className="mt-4 max-w-[100px] ml-auto mr-[180px]">
-        <button
-          onClick={() => determineDisorder()}
-          className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded"
-        >
-          Submit
-        </button>
-      </div>
-      {Object.keys(report).length > 0 ? (
-        <div className="mt-4 p-4 max-w-[80%] mr-auto ml-auto">
-          <div id="report" className="p-4 w-[100%]">
-            <h1 className="text-3xl font-bold text-[#1678F2] mb-4">Report</h1>
-            <div className="flex flex-wrap max-w-[700px] justify-between">
-              {Object.keys(report).map((key, index) => {
-                return (
-                  <div key={key} className="flex mb-4 mr-4  ">
-                    <h1 className="font-bold text-xl">{getLabelName(key)}: </h1>
+        {Object.keys(report).length > 0 ? (
+          <div className="mt-4 p-4 max-w-[80%] mr-auto ml-auto">
+            <div id="report" className="p-4 w-[100%]">
+              <h1 className="text-3xl font-bold text-[#1678F2] mb-4">Report</h1>
+              <div className="flex flex-wrap max-w-[700px] justify-between">
+                {Object.keys(report).map((key, index) => {
+                  return (
+                    <div key={key} className="flex mb-4 mr-4  ">
+                      <h1 className="font-bold text-xl">
+                        {getLabelName(key)}:{" "}
+                      </h1>
 
-                    <h1 className="font-bold text-xl ml-2 text-[#6B40F9] max-w-[700px]">
-                      {" "}
-                      {report[key]}
-                    </h1>
-                  </div>
-                );
-              })}
-            </div>
+                      <h1 className="font-bold text-xl ml-2 text-[#6B40F9] max-w-[700px]">
+                        {" "}
+                        {report[key]}
+                      </h1>
+                    </div>
+                  );
+                })}
+              </div>
 
-            <table className="table-auto border border-black mb-4">
-              <thead>
-                <tr>
-                  <td className="border border-black p-2 font-bold">Factors</td>
-                  <td className="border border-black p-2 font-bold">
-                    Normal Values
-                  </td>
-                  <td className="border border-black p-2 font-bold">
-                    Actual Values
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                {pData.map((p, index) => (
-                  <tr key={index}>
-                    <td className="border border-black py-2 px-8 font-semibold">
-                      {p.label}
+              <table className="table-auto border border-black mb-4">
+                <thead>
+                  <tr>
+                    <td className="border border-black p-2 font-bold">
+                      Factors
                     </td>
-                    <td className="border border-black py-2 px-8">
-                      {normalValues[index].value}
+                    <td className="border border-black p-2 font-bold">
+                      Normal Values
                     </td>
-                    <td className="border border-black py-2 px-8">{p.value}</td>
+                    <td className="border border-black p-2 font-bold">
+                      Actual Values
+                    </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            {/* <table className="table-auto border border-black">
+                </thead>
+                <tbody>
+                  {pData.map((p, index) => (
+                    <tr key={index}>
+                      <td className="border border-black py-2 px-8 font-semibold">
+                        {p.label}
+                      </td>
+                      <td className="border border-black py-2 px-8">
+                        {normalValues[index].value}
+                      </td>
+                      <td className="border border-black py-2 px-8">
+                        {p.value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {/* <table className="table-auto border border-black">
               <tbody>
                 {Object.keys(report).map((key, index) => {
                   return (
@@ -394,17 +403,18 @@ const AcidBaseDisorder = () => {
                 })}
               </tbody>
             </table> */}
-          </div>
+            </div>
 
-          <button
-            onClick={() => downloadPdf()}
-            className="mt-4 ml-4 font-bold text-white bg-[#6B40F9] px-8 py-2 rounded"
-          >
-            Download Report
-          </button>
-        </div>
-      ) : null}
-    </div>
+            <button
+              onClick={() => downloadPdf()}
+              className="mt-4 ml-4 font-bold text-white bg-[#6B40F9] px-8 py-2 rounded"
+            >
+              Download Report
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 };
 

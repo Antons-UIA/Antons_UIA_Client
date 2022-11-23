@@ -15,7 +15,7 @@ const AnionsChart = () => {
   ];
 
   return (
-    <BarChart width={500} height={500} data={data}>
+    <BarChart width={250} height={300} data={data}>
       <CartesianGrid />
       <XAxis dataKey="name" />
       <YAxis />
