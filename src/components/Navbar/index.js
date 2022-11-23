@@ -1,10 +1,18 @@
 import React from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../src/assets/logo.png";
 const Navbar = (props) => {
   const navigate = useNavigate();
-  const handleUsers=(e)=>{
-    navigate(`/${props.value}`)
+  const handleUsers = (e) => {
+    if (props.value === 'sign-out') {
+      localStorage.getItem("token")
+      localStorage.clear();
+      localStorage.getItem("token")
+      navigate('/')
+    }
+    else {
+      navigate(`/${props.value}`)
+    }
   }
   return (
     <div className="py-8 px-16 flex items-center justify-between">

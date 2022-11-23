@@ -52,11 +52,6 @@ const Signup_Doctor = () => {
         setPassword("");
         setName("");
         alert("Registered");
-        console.log(response)
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("email", response.data.email);
-        console.log(localStorage.getItem("token"));
-        console.log(localStorage.getItem("email"));
   
         navigate(`/login`);
       }
