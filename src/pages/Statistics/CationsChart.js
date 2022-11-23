@@ -1,11 +1,13 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
-const CationsChart = () => {
-  const data = [{ name: "Cations", Na: 120, Lactate: 1.35, K: 5 }];
-
+const CationsChart = ({ Na, Lactate, K }) => {
   return (
-    <BarChart width={250} height={300} data={data}>
+    <BarChart
+      width={250}
+      height={300}
+      data={[{ name: "Cations", Na: Na, Lactate: Lactate, K: K }]}
+    >
       <CartesianGrid />
       <XAxis dataKey="name" />
       <YAxis />

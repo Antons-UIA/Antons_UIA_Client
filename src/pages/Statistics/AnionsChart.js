@@ -1,21 +1,23 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
-const AnionsChart = () => {
-  const data = [
-    {
-      name: "Anions",
-      Cl: 100,
-      Lactate: 1.35,
-      Phos: 30,
-      Prot: 25,
-      HCO3: 24,
-      UnmeasuredAnions: 20,
-    },
-  ];
-
+const AnionsChart = ({ Cl, Lactate, Phos, Prot, HCO3, UnmeasuredAnions }) => {
   return (
-    <BarChart width={250} height={300} data={data}>
+    <BarChart
+      width={250}
+      height={300}
+      data={[
+        {
+          name: "Anions",
+          Cl: Cl,
+          Lactate: Lactate,
+          Phos: Phos,
+          Prot: Prot,
+          HCO3: HCO3,
+          UnmeasuredAnions: UnmeasuredAnions,
+        },
+      ]}
+    >
       <CartesianGrid />
       <XAxis dataKey="name" />
       <YAxis />

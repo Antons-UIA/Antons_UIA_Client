@@ -6,6 +6,8 @@ import heartrate from "../../assets/heartrate.png";
 import location from "../../assets/location.png";
 import statistics from "../../assets/charts.png";
 import videocall from "../../assets/videocall.jpg";
+import lungs from "../../assets/lungs.png";
+import ndhm from "../../assets/ndhm.png";
 import { BsSearch } from "react-icons/bs/index";
 import Blogs from "../../components/Blogs";
 const services = [
@@ -38,15 +40,15 @@ const services = [
   },
   {
     id: 5,
-    title: "COPD Center Locator",
-    description: "A map with locations of near by COPD healthcare centers",
-    image: location,
+    title: "COPD Severity Predictor",
+    description: "Predicts the 4 severities of COPD",
+    image: lungs,
   },
   {
     id: 6,
-    title: "COPD Center Locator",
-    description: "A map with locations of near by COPD healthcare centers",
-    image: location,
+    title: "Integration with NDHM",
+    description: "Seamless sync with Electronic Medical Health Records (EHR)",
+    image: ndhm,
   },
 ];
 const Home = () => {

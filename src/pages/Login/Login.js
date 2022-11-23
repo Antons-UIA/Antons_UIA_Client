@@ -23,13 +23,18 @@ const Login = () => {
     try {
       const response = await axios.post(API_URL, { email, password });
       const user = response.data.data;
-      // console.log(user);
+      console.log(user);
       if (user) {
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("email", response.data.data.email);
+        localStorage.setItem("user_type", response.data.data.user_type);
         console.log(localStorage.getItem("token"));
         console.log(localStorage.getItem("email"));
-        navigate("/signup");
+        if (response.data.data.user_type === "patient") {
+          navigate("/reports");
+        } else {
+          navigate("/acidbase");
+        }
       } else {
         alert("User not found");
       }
@@ -38,7 +43,7 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar value="SignUp"/>
+      <Navbar value="SignUp" />
       <div className="flex items-center justify-between py-8 px-16 ">
         <div className="w-full">
           <div className="flex justify-center">
@@ -106,7 +111,6 @@ const Login = () => {
               >
                 Login
               </button>
-    
             </div>
           </div>
         </div>
