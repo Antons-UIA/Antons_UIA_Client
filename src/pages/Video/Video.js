@@ -1,11 +1,14 @@
-import React from 'react'
-const urls = 'https://healthyme.daily.co/hello-daily'
+import React from "react";
 const Video = () => {
-    return (
-        <div>
-            <iframe src="https://antons.whereby.com/63b286ed-7736-4f15-8900-41ba538a9c2d" allow="camera; microphone; fullscreen; speaker; display-capture" style={{ height: "700px", width: "100%" }}></iframe>
-        </div>
-    )
-}
+  return (
+    <div>
+      <iframe
+        src="https://mentorgrowth.daily.co/ORaUFBLzqxSFHwfUAx58"
+        allow="camera; microphone; fullscreen; speaker; display-capture"
+        style={{ height: "700px", width: "100%" }}
+      ></iframe>
+    </div>
+  );
+};
 
-export default Video
+export default Video;

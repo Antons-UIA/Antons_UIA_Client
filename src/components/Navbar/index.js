@@ -6,7 +6,9 @@ const Navbar = () => {
     <div className="py-8 px-16 flex items-center justify-between">
       <div className="flex items-center">
         <img className="w-[50px]" src={logo} />
-        <h1 className="font-bold text-2xl text-[#3A8EF6] ml-4">HealthyMe</h1>
+        <h1 className="font-bold text-2xl text-[#3A8EF6] ml-4">
+          Swasthya Buddy
+        </h1>
       </div>
 
       <div className="flex justify-around items-center">

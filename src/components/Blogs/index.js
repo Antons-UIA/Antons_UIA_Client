@@ -21,13 +21,15 @@ const Blogs = () => {
       <h1 className="text-2xl font-semibold text-[#1678F2]">Blogs</h1>
       <div className="flex mt-4">
         {blogData.map((blog) => (
-          <div
+          <a
             key={blog.url}
             className="max-w-[250px] mr-4 shadow shadow-slate-400 rounded-lg"
+            href={blog.url}
+            target="_blank"
           >
             <img className="max-w-[250px] rounded-lg" src={blog.urlToImage} />
             <h1 className="p-4 font-bold ">{blog.title}</h1>
-          </div>
+          </a>
         ))}
       </div>
     </div>

@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Statistics from "./pages/Statistics";
 import Reports from "./pages/Reports";
 import VideoCall from "./components/VideoCall/VideoCall";
+import Maps from "./pages/Maps";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route path="/acidbase" element={<AcidBaseDisorder />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/maps" element={<Maps />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
