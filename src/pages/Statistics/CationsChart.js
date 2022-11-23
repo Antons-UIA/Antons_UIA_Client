@@ -5,7 +5,7 @@ const CationsChart = () => {
   const data = [{ name: "Cations", Na: 120, Lactate: 1.35, K: 5 }];
 
   return (
-    <BarChart width={500} height={500} data={data}>
+    <BarChart width={250} height={300} data={data}>
       <CartesianGrid />
       <XAxis dataKey="name" />
       <YAxis />

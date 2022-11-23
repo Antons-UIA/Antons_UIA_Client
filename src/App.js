@@ -9,8 +9,9 @@ import Statistics from "./pages/Statistics";
 import Reports from "./pages/Reports";
 import VideoCall from "./components/VideoCall/VideoCall";
 import Maps from "./pages/Maps";
-import Signup_Patient from "./pages/SignUp/Signup_Patient";
 import Signup_Doctor from "./pages/SignUp/Signup_Doctor";
+import Signup_Patient from "./pages/SignUp/Signup_Patient";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
