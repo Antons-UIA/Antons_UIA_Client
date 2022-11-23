@@ -134,15 +134,15 @@ const AcidBaseDisorder = () => {
       ref_doctor_email: "atharvakinikar@gmail.com",
     });
     const response = await axios.post(API_URL, {
-      pH: pH,
-      CO2: CO2,
-      HCO3: HCO3,
-      Na: Na,
-      K: K,
-      Cl: Cl,
-      weight: weight,
-      Albumin: albumin,
-      Lactate: lactate,
+      pH: parseFloat(pH),
+      CO2: parseFloat(CO2),
+      HCO3: parseFloat(HCO3),
+      Na: parseFloat(Na),
+      K: parseFloat(K),
+      Cl: parseFloat(Cl),
+      weight: parseFloat(weight),
+      Albumin: parseFloat(albumin),
+      Lactate: parseFloat(lactate),
       patient_name: patientName,
       patient_email: patientEmail,
       ref_doctor_email: "atharvakinikar@gmail.com",
@@ -184,7 +184,7 @@ const AcidBaseDisorder = () => {
       <h1 className="text-3xl font-bold text-[#6B40F9]">
         Determine Acid Base Disorders
       </h1>
-      <div className="flex justify-around items-center">
+      {/* <div className="flex justify-around items-center">
         <div className="mr-8 mt-4">
           <h1 className="font-semibold text-lg">Enter Patient Name</h1>
           <input
@@ -203,8 +203,26 @@ const AcidBaseDisorder = () => {
             onChange={(e) => setPatientEmail(e.target.value)}
           />
         </div>
-      </div>
-      <div className="mt-4 p-4 max-w-[80%] flex flex-wrap items-center justify-between mr-auto ml-auto">
+      </div> */}
+      <div className="mt-4 p-4 max-w-[80%] grid grid-cols-3 mr-auto ml-auto">
+        <div className="mr-8 mt-4">
+          <h1 className="font-semibold text-lg">Enter Patient Name</h1>
+          <input
+            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
+            placeholder="eg. Manan Shah"
+            value={patientName}
+            onChange={(e) => setPatientName(e.target.value)}
+          />
+        </div>
+        <div className="mr-8 mt-4">
+          <h1 className="font-semibold text-lg">Enter Patient Email</h1>
+          <input
+            className="mt-2 outline-none shadow shadow-slate-400 p-2 rounded"
+            placeholder="eg. manan@gmail.com"
+            value={patientEmail}
+            onChange={(e) => setPatientEmail(e.target.value)}
+          />
+        </div>
         <div className="mr-8 mt-4">
           <h1 className="font-semibold text-lg">Enter pH value</h1>
           <input
@@ -291,7 +309,7 @@ const AcidBaseDisorder = () => {
             value={albumin}
             onChange={(e) => setAlbumin(e.target.value)}
           />
-          <span className="ml-2 text-sm mr-16 text-slate-600">g/L</span>
+          <span className="ml-2 text-sm text-slate-600">g/L</span>
         </div>
         <div className="mr-8 mt-4">
           <h1 className="font-semibold text-lg">Enter weight value in kgs</h1>
@@ -302,10 +320,10 @@ const AcidBaseDisorder = () => {
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
           />
-          <span className="ml-2 text-sm mr-2 text-slate-600">kg</span>
+          <span className="ml-2 text-sm text-slate-600">kg</span>
         </div>
       </div>
-      <div className="mt-8 max-w-[100px] ml-auto mr-[180px]">
+      <div className="mt-4 max-w-[100px] ml-auto mr-[180px]">
         <button
           onClick={() => determineDisorder()}
           className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded"

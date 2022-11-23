@@ -9,6 +9,7 @@ import Statistics from "./pages/Statistics";
 import Reports from "./pages/Reports";
 import VideoCall from "./components/VideoCall/VideoCall";
 import Maps from "./pages/Maps";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
+      <Footer />
     </div>
   );
 }
