@@ -10,7 +10,6 @@ const Signup_Patient = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("");
-  const [weight, setWeight] = useState("");
   const user_type = "patient";
   const doctor_id = "0";
   const API_URL =

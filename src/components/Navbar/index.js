@@ -4,14 +4,15 @@ import logo from "../../../src/assets/logo.png";
 const Navbar = (props) => {
   const navigate = useNavigate();
   const handleUsers = (e) => {
-    if (props.value === 'sign-out') {
-      localStorage.getItem("token")
+    if (props.value === "Sign-out") {
+      console.log(localStorage.getItem("token"))
       localStorage.clear();
-      localStorage.getItem("token")
+      console.log(localStorage.getItem("token"))
       navigate('/')
     }
     else {
       navigate(`/${props.value}`)
+      console.log("Else was selected");
     }
   }
   return (

@@ -23,13 +23,18 @@ const Login = () => {
     try {
       const response = await axios.post(API_URL, { email, password });
       const user = response.data.data;
-      // console.log(user);
+      console.log(user);
       if (user) {
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("email", response.data.data.email);
         console.log(localStorage.getItem("token"));
         console.log(localStorage.getItem("email"));
-        navigate("/signup");
+        if(response.data.data.type="patient"){
+          navigate('/reports')
+        }
+        else{
+          navigate("/reports/12345");
+        }
       } else {
         alert("User not found");
       }
