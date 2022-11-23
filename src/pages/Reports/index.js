@@ -1,6 +1,7 @@
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 const dummyReports = [
   {
     id: 2331,
@@ -27,6 +28,7 @@ const Reports = () => {
   const navigate = useNavigate();
   return (
     <div className="px-8 py-4">
+      <Navbar value="Sign-out"/>
       <h1 className="text-3xl font-bold text-[#6B40F9]">Reports</h1>
       <div className="mt-4 flex justify-between flex-wrap">
         {dummyReports.map((report) => (

@@ -9,10 +9,11 @@ import Statistics from "./pages/Statistics";
 import Reports from "./pages/Reports";
 import VideoCall from "./components/VideoCall/VideoCall";
 import Maps from "./pages/Maps";
+import Signup_Patient from "./pages/SignUp/Signup_Patient";
+import Signup_Doctor from "./pages/SignUp/Signup_Doctor";
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Router>
         <Routes>
           <Route path="/video" element={<VideoCall />} />
@@ -20,6 +21,9 @@ function App() {
           <Route path="reports/:id" element={<Statistics />} />
           <Route path="/acidbase" element={<AcidBaseDisorder />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup-patient" element={<Signup_Patient />} />
+          <Route path="/signup-doctor" element={<Signup_Doctor />} />
+          <Route path="/sign-out" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/maps" element={<Maps />} />
           <Route path="/" element={<Home />} />

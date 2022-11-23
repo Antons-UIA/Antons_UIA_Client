@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import Navbar from "../../components/Navbar";
 import AnionsChart from "./AnionsChart";
 import CationsChart from "./CationsChart";
 
 const Statistics = () => {
   return (
     <div className="px-8 py-4">
+      <Navbar value="Sign-out"/>
       <h1 className="text-3xl font-bold text-[#6B40F9]">Statistics</h1>
       <div className="flex justify-evenly mb-4">
         <div className="flex items-center">
