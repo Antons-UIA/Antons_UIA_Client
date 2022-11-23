@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import img from "../../assets/DocPatient.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const API_URL = "http://localhost:4000/api/auth/login";
+  const API_URL = "https://uia-antons-server.herokuapp.com/api/auth/login";
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,7 +18,7 @@ const Login = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-  const handlePatientSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(API_URL, { email, password });
@@ -33,6 +34,7 @@ const Login = () => {
 
   return (
     <div>
+      <Navbar value="SignUp"/>
       <div className="flex items-center justify-between py-8 px-16 ">
         <div className="w-full">
           <div className="flex justify-center">
@@ -96,13 +98,11 @@ const Login = () => {
             <div className="mt-5 m-auto flex flex-col justify-items-center ">
               <button
                 className="w-full bg-[#1678F2] w-full self-center py-2 rounded-xl font-semibold text-md my-1 text-slate-100 px-10 py-2"
-                onClick={handlePatientSubmit}
+                onClick={handleLogin}
               >
-                Login as a Patient
+                Login
               </button>
-              <button className="w-full bg-[#1678F2] w-full self-center py-2 rounded-xl font-semibold text-md my-1 text-slate-100 px-10 py-2">
-                Login as a Technician
-              </button>
+    
             </div>
           </div>
         </div>

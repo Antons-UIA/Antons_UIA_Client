@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import logo from "../../../src/assets/logo.png";
-const Navbar = () => {
+const Navbar = (props) => {
+  const navigate = useNavigate();
+  const handleUsers=(e)=>{
+    navigate(`/${props.value}`)
+  }
   return (
     <div className="py-8 px-16 flex items-center justify-between">
       <div className="flex items-center">
@@ -19,8 +23,8 @@ const Navbar = () => {
         <h1 className="text-lg font-semibold pl-5">How to use</h1>
       </div>
       <div>
-        <button className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded">
-          Log In
+        <button className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded " onClick={handleUsers}>
+          {props.value}
         </button>
       </div>
     </div>
