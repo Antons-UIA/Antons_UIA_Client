@@ -25,7 +25,11 @@ const Login = () => {
       const user = response.data.data;
       // console.log(user);
       if (user) {
-        navigate("/");
+        localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("email", response.data.data.email);
+        console.log(localStorage.getItem("token"));
+        console.log(localStorage.getItem("email"));
+        navigate("/signup");
       } else {
         alert("User not found");
       }
