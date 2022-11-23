@@ -119,6 +119,20 @@ const AcidBaseDisorder = () => {
         value: lactate,
       },
     ]);
+    console.log({
+      pH: pH,
+      CO2: CO2,
+      HCO3: HCO3,
+      Na: Na,
+      K: K,
+      Cl: Cl,
+      weight: weight,
+      Albumin: albumin,
+      Lactate: lactate,
+      patient_name: patientName,
+      patient_email: patientEmail,
+      ref_doctor_email: "atharvakinikar@gmail.com",
+    });
     const response = await axios.post(API_URL, {
       pH: pH,
       CO2: CO2,
@@ -303,19 +317,21 @@ const AcidBaseDisorder = () => {
         <div className="mt-4 p-4 max-w-[80%] mr-auto ml-auto">
           <div id="report" className="p-4 w-[100%]">
             <h1 className="text-3xl font-bold text-[#1678F2] mb-4">Report</h1>
+            <div className="flex flex-wrap max-w-[700px] justify-between">
+              {Object.keys(report).map((key, index) => {
+                return (
+                  <div key={key} className="flex mb-4 mr-4  ">
+                    <h1 className="font-bold text-xl">{getLabelName(key)}: </h1>
 
-            {Object.keys(report).map((key, index) => {
-              return (
-                <div key={key} className="flex mb-4">
-                  <h1 className="font-bold text-xl">{getLabelName(key)}: </h1>
+                    <h1 className="font-bold text-xl ml-2 text-[#6B40F9] max-w-[700px]">
+                      {" "}
+                      {report[key]}
+                    </h1>
+                  </div>
+                );
+              })}
+            </div>
 
-                  <h1 className="font-bold text-xl ml-2 text-[#6B40F9] max-w-[700px]">
-                    {" "}
-                    {report[key]}
-                  </h1>
-                </div>
-              );
-            })}
             <table className="table-auto border border-black mb-4">
               <thead>
                 <tr>
