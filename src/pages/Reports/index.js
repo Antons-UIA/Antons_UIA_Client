@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 import Navbar from "../../components/Navbar";
 const dummyReports = [
   {
@@ -29,11 +30,17 @@ const Reports = () => {
   const [reportData, setReportData] = useState([]);
   const [docNames, setDocNames] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     getPatientData();
   }, []);
   const getPatientData = async () => {
-    const email = localStorage.getItem("email");
+    let email = "";
+    if (localStorage.getItem("user_type") === "doctor") {
+      email = location.state.email;
+    } else {
+      email = localStorage.getItem("email");
+    }
     const response = await axios.post(
       "https://uia-antons-server.herokuapp.com/api/reports/patient",
       {
@@ -62,46 +69,65 @@ const Reports = () => {
       <Navbar value="Sign-out" />
       <h1 className="text-3xl font-bold text-[#6B40F9]">Reports</h1>
       <div className="mt-4 flex flex-wrap">
-        {reportData.length > 0
-          ? reportData.map((report, index) => (
-              <div
-                key={report._id}
-                className="p-4 shadow shadow-slate-500 rounded w-fit mt-4 relative mr-4"
-              >
-                <div className="flex items-center">
-                  <h1 className="font-bold text-lg">ID: </h1>
-                  <h1 className="ml-2 text-lg">{report._id}</h1>
-                </div>
+        {reportData.length > 0 ? (
+          reportData.map((report, index) => (
+            <div
+              key={report._id}
+              className="p-4 shadow shadow-slate-500 rounded w-fit mt-4 relative mr-4"
+            >
+              <div className="flex items-center">
+                <h1 className="font-bold text-lg">ID: </h1>
+                <h1 className="ml-2 text-lg">{report._id}</h1>
+              </div>
+
+              {localStorage.getItem("user_type") === "doctor" ? (
                 <div className="flex items-center mt-2">
-                  <h1 className="font-bold text-lg">Doctor/Technician: </h1>
+                  <h1 className="font-bold text-lg">Patient Name: </h1>
+                  <h1 className="ml-2 text-lg">{report.patient_name}</h1>
+                </div>
+              ) : (
+                <div className="flex items-center mt-2">
+                  <h1 className="font-bold text-lg">Doctor Name: </h1>
                   <h1 className="ml-2 text-lg">{docNames[index]}</h1>
                 </div>
+              )}
+
+              {localStorage.getItem("user_type") === "doctor" ? (
+                <div className="flex items-center mt-2">
+                  <h1 className="font-bold text-lg">Patient Email: </h1>
+                  <h1 className="ml-2 text-lg">{report.patient_email}</h1>
+                </div>
+              ) : (
                 <div className="flex items-center mt-2">
                   <h1 className="font-bold text-lg">Doctor Email: </h1>
                   <h1 className="ml-2 text-lg">{report.ref_doctor_email}</h1>
                 </div>
-                <div className="flex items-center mt-2">
-                  <h1 className="font-bold text-lg">Date: </h1>
-                  <h1 className="ml-2 text-lg">
-                    {new Date(Date(report.date)).toLocaleDateString()}
-                  </h1>
-                </div>
+              )}
 
-                <div
-                  onClick={() => {
-                    navigate(`${report._id}`, { state: { report: report } });
-                  }}
-                  className="absolute bottom-0 right-0 p-2"
-                >
-                  <MdArrowForwardIos
-                    size={20}
-                    className="cursor-pointer"
-                    color="#3A8EF6"
-                  />
-                </div>
+              <div className="flex items-center mt-2">
+                <h1 className="font-bold text-lg">Date: </h1>
+                <h1 className="ml-2 text-lg">
+                  {new Date(Date(report.date)).toLocaleDateString()}
+                </h1>
               </div>
-            ))
-          : null}
+
+              <div
+                onClick={() => {
+                  navigate(`${report._id}`, { state: { report: report } });
+                }}
+                className="absolute bottom-0 right-0 p-2"
+              >
+                <MdArrowForwardIos
+                  size={20}
+                  className="cursor-pointer"
+                  color="#3A8EF6"
+                />
+              </div>
+            </div>
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );

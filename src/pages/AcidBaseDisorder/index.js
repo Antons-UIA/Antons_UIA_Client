@@ -7,38 +7,78 @@ const API_URL = "https://uia-antons-server.herokuapp.com/api/acid-base/predict";
 const normalValues = [
   {
     label: "pH",
-    value: 7.4,
+    value: "7.38-7.44",
   },
   {
     label: "PaCO2",
-    value: 40,
+    value: "38-42",
   },
   {
     label: "HCO3",
-    value: 24,
+    value: "23-28",
   },
   {
     label: "Na",
-    value: 140,
+    value: "136-145",
   },
   {
     label: "K",
-    value: 4.4,
+    value: "3.6-5.2",
   },
   {
     label: "Cl",
-    value: 100,
+    value: "98-106",
   },
   {
     label: "Albumin",
-    value: 4.4,
+    value: "3.5-5.5",
   },
   {
     label: "Lactate",
-    value: 1.35,
+    value: "0.5-2.22",
   },
 ];
 const AcidBaseDisorder = () => {
+  const [file, setFile] = useState({});
+
+  const sendFile2 = async () => {
+    console.log(file);
+    let data = new FormData();
+    data.append("myfile", file, file.name);
+    const res = await axios.post("http://127.0.0.1:5000/ocr", data, {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US, en;q=0.8",
+        "Content-Type": `multipart/form-data`,
+      },
+    });
+    console.log(res.data);
+    const ans = res.data;
+    Object.keys(ans).map((key, index) => {
+      if (key.toLocaleLowerCase() === "na") {
+        setNa(ans[key]);
+      }
+      if (key.toLocaleLowerCase() === "ph") {
+        setpH(ans[key]);
+      }
+      if (key.toLocaleLowerCase() === "pco2") {
+        if (parseInt(ans[key]) < 25) {
+          setCO2(parseFloat(ans[key]) * 7.50062);
+        } else {
+          setCO2(parseFloat(ans[key]));
+        }
+      }
+      if (key.toLocaleLowerCase() === "hco3") {
+        setHCO3(ans[key]);
+      }
+      if (key.toLocaleLowerCase() === "k") {
+        setK(ans[key]);
+      }
+      if (key.toLocaleLowerCase() === "cl") {
+        setCl(ans[key]);
+      }
+    });
+  };
   const [pData, setPData] = useState([
     {
       label: "pH",
@@ -120,6 +160,7 @@ const AcidBaseDisorder = () => {
         value: lactate,
       },
     ]);
+
     console.log({
       pH: pH,
       CO2: CO2,
@@ -146,7 +187,7 @@ const AcidBaseDisorder = () => {
       Lactate: parseFloat(lactate),
       patient_name: patientName,
       patient_email: patientEmail,
-      ref_doctor_email: "atharvakinikar@gmail.com",
+      ref_doctor_email: localStorage.getItem("email"),
     });
     console.log(response);
     console.log(Object.keys(report).length);
@@ -180,6 +221,68 @@ const AcidBaseDisorder = () => {
       pdf.save("report.pdf");
     });
   };
+  const calculateColor = (label, value) => {
+    switch (label) {
+      case "pH":
+        if (value < 7.38) {
+          return "font-bold text-teal-500";
+        } else if (value > 7.44) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "PaCO2":
+        if (value < 38) {
+          return "font-bold text-teal-500";
+        } else if (value > 42) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "HCO3":
+        if (value < 23) {
+          return "font-bold text-teal-500";
+        } else if (value > 28) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "Na":
+        if (value < 136) {
+          return "font-bold text-teal-500";
+        } else if (value > 145) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "K":
+        if (value < 3.6) {
+          return "font-bold text-teal-500";
+        } else if (value > 5.2) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "Cl":
+        if (value < 98) {
+          return "font-bold text-teal-500";
+        } else if (value > 105) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "Albumin":
+        if (value < 3.5) {
+          return "font-bold text-teal-500";
+        } else if (value > 5.5) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      case "Lactate":
+        if (value < 0.5) {
+          return "font-bold text-teal-500";
+        } else if (value > 2.2) {
+          return "font-bold text-red-600";
+        }
+        return "";
+      default:
+        return "";
+    }
+  };
   return (
     <>
       <Navbar value="Sign-Out" />
@@ -208,6 +311,15 @@ const AcidBaseDisorder = () => {
         </div>
       </div> */}
         <div className="mt-4 p-4 max-w-[90%] grid grid-cols-2 mr-auto ml-auto">
+          <div className="flex flex-col">
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <button
+              className="font-bold text-white bg-[#3A8EF6] px-8 py-2 rounded w-fit mt-4"
+              onClick={() => sendFile2()}
+            >
+              Get Data
+            </button>
+          </div>
           <div className="mr-8 mt-4">
             <h1 className="font-semibold text-lg">Enter Patient Name</h1>
             <input
@@ -378,7 +490,12 @@ const AcidBaseDisorder = () => {
                       <td className="border border-black py-2 px-8">
                         {normalValues[index].value}
                       </td>
-                      <td className="border border-black py-2 px-8">
+                      <td
+                        className={`border border-black py-2 px-8 ${calculateColor(
+                          p.label,
+                          p.value
+                        )}`}
+                      >
                         {p.value}
                       </td>
                     </tr>
