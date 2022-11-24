@@ -153,15 +153,15 @@ const AcidBaseDisorder = () => {
     const ans = response.data.data;
     setReport(ans);
     window.scrollBy(0, 200);
-    setpH("");
-    setCO2("");
-    setHCO3("");
-    setNa("");
-    setK("");
-    setCl("");
-    setWeight("");
-    setAlbumin("");
-    setLactate("");
+    // setpH("");
+    // setCO2("");
+    // setHCO3("");
+    // setNa("");
+    // setK("");
+    // setCl("");
+    // setWeight("");
+    // setAlbumin("");
+    // setLactate("");
   };
   const getLabelName = (label) => {
     let words = label.split("_");
@@ -365,7 +365,7 @@ const AcidBaseDisorder = () => {
                       Normal Values
                     </td>
                     <td className="border border-black p-2 font-bold">
-                      Actual Values
+                      Patient's Values
                     </td>
                   </tr>
                 </thead>

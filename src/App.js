@@ -12,6 +12,8 @@ import Maps from "./pages/Maps";
 import Signup_Doctor from "./pages/SignUp/Signup_Doctor";
 import Signup_Patient from "./pages/SignUp/Signup_Patient";
 import Footer from "./components/Footer";
+import PredictSeverity from "./pages/PredictSeverity";
+import OCR from "./pages/OCR";
 function App() {
   return (
     <div className="App">
@@ -27,6 +29,8 @@ function App() {
           <Route path="/sign-out" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/maps" element={<Maps />} />
+          <Route path="/predict-severity" element={<PredictSeverity />} />
+          <Route path="ocr" element={<OCR />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
