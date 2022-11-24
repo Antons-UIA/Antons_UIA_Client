@@ -27,13 +27,15 @@ const Login = () => {
       if (user) {
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("email", response.data.data.email);
-        localStorage.setItem("user_type", response.data.data.user_type);
+        localStorage.setItem("otp", response.data.data.otp);
+        // localStorage.setItem("doctorid", response.data.data.otp);
         console.log(localStorage.getItem("token"));
         console.log(localStorage.getItem("email"));
-        if (response.data.data.user_type === "patient") {
+        if(response.data.data.user_type=="doctor"){
+          navigate('/patientlist')
+        }
+        else{
           navigate("/reports");
-        } else {
-          navigate("/acidbase");
         }
       } else {
         alert("User not found");
@@ -43,7 +45,7 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar value="SignUp" />
+      <Navbar value="SignUp"/>
       <div className="flex items-center justify-between py-8 px-16 ">
         <div className="w-full">
           <div className="flex justify-center">
@@ -111,6 +113,7 @@ const Login = () => {
               >
                 Login
               </button>
+    
             </div>
           </div>
         </div>
