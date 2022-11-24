@@ -17,6 +17,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/otp" element={<Otp />} />
+          <Route path="/patientlist" element={<PatientList />} />
           <Route path="/video" element={<VideoCall />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="reports/:id" element={<Statistics />} />
