@@ -28,13 +28,14 @@ const Login = () => {
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("email", response.data.data.email);
         localStorage.setItem("otp", response.data.data.otp);
+        // localStorage.setItem("doctorid", response.data.data.otp);
         console.log(localStorage.getItem("token"));
         console.log(localStorage.getItem("email"));
-        if(response.data.data.type="patient"){
-          navigate('/reports')
+        if(response.data.data.user_type=="doctor"){
+          navigate('/patientlist')
         }
         else{
-          navigate("/reports/12345");
+          navigate("/reports");
         }
       } else {
         alert("User not found");

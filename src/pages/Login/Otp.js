@@ -22,10 +22,10 @@ const handleOtpChange=(e)=>{
     }
   };
     return (
-        
-        <div>
+        <div className="flex justify-center m-10">
+        <div className="text-center">
             <label
-                className="text-left font-semibold text-[#201835] "
+                className="text-left font-semibold text-[#201835] text-xl"
                 htmlFor="otp"
             >
                 Enter OTP
@@ -40,6 +40,7 @@ const handleOtpChange=(e)=>{
                 onChange={handleOtpChange}
             />
             <button className="w-full bg-[#1678F2] w-full self-center py-2 rounded-xl font-semibold text-md my-1 text-slate-100 px-10 py-2" onClick={handleOtpSubmit}>Confirm</button>
+        </div>
         </div>
     )
 }
